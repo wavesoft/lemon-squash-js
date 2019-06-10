@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lemon Squash - Example</title>
+  <link rel="stylesheet" href="css/xterm.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+  <script src="js/xterm.js"></script>
+  <script src="js/addons/fit/fit.js"></script>
+  <script src="js/lemon-squash.dist.js"></script>
+</head>
+  <body>
+    <h2>🍋 lemon-squash.js - Example</h2>
+    <p>The following session is created in a sandbox inside the lemon-squash server, in an isolated chroot environment. When you close the window your sandbox will be cleared and all your running applications will be killed.</p>
+    <div id="terminal"></div>
+    <script>
+
+      // Create a simple XTerm session
+      Terminal.applyAddon(fit);
+      const term = new Terminal({
+        fontFamily: "'Roboto Mono', monospace",
+        fontSize: 12
+      });
+
+      // Attach it ton the <div/> element above
+      term.open(document.getElementById('terminal'));
+
+      // Start an interactive session
+      const session = new InteractiveSession(term);
+      session.connect(`ws://${window.location.host}`);
+
+    </script>
+  </body>
+</html>
